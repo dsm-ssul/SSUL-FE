@@ -62,7 +62,7 @@ const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 5px;
-  margin-left: -6%;
+  margin-left: -7%;
 `;
 
 const Content = styled.p`
