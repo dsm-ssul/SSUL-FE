@@ -6,4 +6,10 @@ export const GlobalStyle = createGlobalStyle`
     src: url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
     font-weight: normal;
     font-style: normal;
-}`;
+}
+
+* {
+    padding:0;
+    margin: 0;
+  }
+`;
