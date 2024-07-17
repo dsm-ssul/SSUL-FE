@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const EnterInput = ({ Title }) => {
+export const EnterInput = ({ Title, value, onChange }) => {
   return (
     <InputContainer>
       <InputTitle>{Title}</InputTitle>
-      <Input />
+      <Input type="text" value={value} onChange={onChange} />
     </InputContainer>
   );
 };

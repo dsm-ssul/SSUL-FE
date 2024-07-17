@@ -9,7 +9,7 @@ export const VotePage = () => {
             <Header/>
             <Center>
                 <VotingComponent question= {"삼성전자 앞으로?"} options = {["더 오른다", "아니다"]} questionId="q1" initialVotes={{ "더 오른다": 4, "아니다": 2 }}/>
-                <VotingComponent question= {"내 한달 연봉 4000이상"} options = {["맞다", "아니다"]} questionId="q2" initialVotes={{ "맞다": 3, "아니다": 3 }}/>
+                <VotingComponent question= {"내 연봉 4000이상"} options = {["맞다", "아니다"]} questionId="q2" initialVotes={{ "맞다": 3, "아니다": 3 }}/>
             </Center>
         </>
     )
