@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import { CalculatorInput } from "../components/CalculatorInput";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const CalculatorPage = () => {
   const [wages, setWages] = useState("");
@@ -10,6 +11,8 @@ export const CalculatorPage = () => {
   const [checkCard, setCheckCard] = useState("");
   const [taxPercent, setTaxPercent] = useState("");
   const [safeTax, setSafeTax] = useState("");
+
+  const navigate = useNavigate();
 
   const handleWagesChange = (e) => {
     setWages(e.target.value);
@@ -119,6 +122,9 @@ export const CalculatorPage = () => {
               달라집니다.
             </Content>
           </TextContainer>
+          <SmallButton onClick={() => navigate("/NewCalculator")}>
+            현금 사용 계산기
+          </SmallButton>
         </PercentContainer>
       </Container>
     </>
@@ -174,4 +180,16 @@ const Percent = styled.p`
 const Content = styled.p`
   font-size: 14px;
   color: #787878;
+`;
+
+const SmallButton = styled.button`
+  width: 200px;
+  height: 45px;
+  background-color: #5163d2;
+  font-size: 20px;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  align-self: flex-end;
+  cursor: pointer;
 `;

@@ -2,11 +2,14 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import { CalculatorInput } from "../components/CalculatorInput";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const NewCalculatorPage = () => {
   const [wages, setWages] = useState("");
   const [creditCard, setCreditCard] = useState("");
   const [cashTax, setCashTax] = useState("");
+
+  const navigate = useNavigate();
 
   const handleWagesChange = (e) => {
     setWages(e.target.value);
@@ -54,8 +57,13 @@ export const NewCalculatorPage = () => {
           <Button onClick={calculateTax}>계산하기</Button>
         </Calculator>
         <TextContainer>
-          <Title>앞으로 써야할 현금</Title>
-          <Percent>{cashTax}원</Percent>
+          <div>
+            <Title>앞으로 써야할 현금</Title>
+            <Percent>{cashTax}원</Percent>
+          </div>
+          <SmallButton onClick={() => navigate("/NewCalculator")}>
+            소득 공제 계산기
+          </SmallButton>
         </TextContainer>
       </Container>
     </>
@@ -88,9 +96,15 @@ const Calculator = styled.div`
 `;
 
 const TextContainer = styled.div`
+  width: 350px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 70px;
+  > div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 `;
 
 const Title = styled.b`
@@ -100,4 +114,16 @@ const Title = styled.b`
 const Percent = styled.p`
   font-size: 35px;
   color: #5163d2;
+`;
+
+const SmallButton = styled.button`
+  width: 200px;
+  height: 45px;
+  background-color: #5163d2;
+  font-size: 20px;
+  color: white;
+  border: none;
+  border-radius: 15px;
+  align-self: flex-end;
+  cursor: pointer;
 `;
