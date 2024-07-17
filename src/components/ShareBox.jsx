@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-export const ShareBox = ({ img, title, content, date }) => {
+export const ShareBox = ({ onclick, img, title, content, date }) => {
   return (
-    <Container>
+    <Container onClick={onclick}>
       <Img src={img} />
       <Text>
         <div>
@@ -19,6 +19,7 @@ const Container = styled.div`
   width: 300px;
   height: 340px;
   box-shadow: 0px 0px 4px 0px #ebebeb;
+  cursor: pointer;
 `;
 
 const Img = styled.img`
