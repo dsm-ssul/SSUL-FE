@@ -15,32 +15,24 @@ export const MainPage = () => {
         ],
     };
 
-    const Options = {};
+    const options = {};
+
+    const colors = ["#5C7EBF", "#709FBF", "#8CC0E4", "#A4D5F6"];
 
     return(
         <>
             <Header/>
             <MainContainer>
                 <Main>
-                    <Doughnut data={data} options={Options}></Doughnut>
+                    <Doughnut data={data} options={options}></Doughnut>
                 </Main>
                 <ListSquareContainer>
-                    <ListContainer>
-                        <Square/>
-                        <Font>생활비</Font>
-                    </ListContainer>
-                    <ListContainer>
-                        <Square/>
-                        <Font>고정비</Font>
-                    </ListContainer>
-                    <ListContainer>
-                        <Square/>
-                        <Font>저축비</Font>
-                    </ListContainer>
-                    <ListContainer>
-                        <Square/>
-                        <Font>재테크</Font>
-                    </ListContainer>
+                    {["생활비", "고정비", "저축비", "재테크"].map((label, index) => (
+                        <ListContainer key={index}>
+                            <Square color={colors[index]} />
+                            <Font>{label}</Font>
+                        </ListContainer>
+                    ))}
                 </ListSquareContainer>
             </MainContainer>
             <AnswerCenter>
@@ -53,6 +45,15 @@ export const MainPage = () => {
                         </TextBox>
                     </Answer>
                 </AnswerContainer>
+                <AnswerContainer2>
+                    <Answer2>
+                        <TextBox2>
+                            <Text>
+                                효과적인 금융생활
+                            </Text>
+                        </TextBox2>
+                    </Answer2>
+                </AnswerContainer2>
             </AnswerCenter>
         </>
     )
@@ -86,9 +87,9 @@ const Square = styled.div`
     width: 20px;
     height: 20px;
     border-radius: 5px;
-    background-color: #5C7EBF;
+    background-color: ${({ color }) => color};
     margin: 0 20px 0 0;
-`
+`;
 
 const ListContainer = styled.div`
     display: flex;
@@ -98,9 +99,10 @@ const ListContainer = styled.div`
 
 const AnswerCenter = styled.div`
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin: 50px;
-`
+`;
 
 const AnswerContainer = styled.div`
     width: 1478px;
@@ -131,4 +133,30 @@ const Text = styled.div`
     font-weight: bold;
     font-size: 28px;
     color: #5163D2;
+`;
+
+const AnswerContainer2 = styled.div`
+    margin-top: 100px;
+    width: 1478px;
+    height: 590px;
+    display: flex;
+    align-items: end;
+`;
+
+const Answer2 = styled.div`
+    width: 1478px;
+    height: 553px;
+    border: 1px solid black;
+    border-radius: 15px;
+`;
+
+const TextBox2 = styled.div`
+    position: absolute;
+    background-color: white;
+    left: 300px;
+    top: 1000px;
+    width: 253px;
+    height: 39px;
+    display: flex;
+    justify-content: center;
 `;
