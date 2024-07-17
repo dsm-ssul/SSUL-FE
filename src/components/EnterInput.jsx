@@ -15,10 +15,12 @@ const InputTitle = styled.p`
 `;
 
 const Input = styled.input`
-  width: 520px;
+  width: 500px;
   height: 45px;
   border-radius: 15px;
   border: 1px solid #838383;
+  font-size: 18px;
+  padding-left: 20px;
   &:focus {
     border: 1px solid #5163d2 !important;
   }

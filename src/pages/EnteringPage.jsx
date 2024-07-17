@@ -44,10 +44,12 @@ const InputTitle = styled.p`
 `;
 
 const Input = styled.input`
-  width: 100px;
+  width: 80px;
   height: 45px;
   border-radius: 15px;
   border: 1px solid #838383;
+  font-size: 18px;
+  padding-left: 20px;
   &:focus {
     border: 1px solid #5163d2 !important;
   }
