@@ -1,5 +1,5 @@
+import styled from "styled-components";
 import { EnterInput } from "../components/EnterInput";
-const { default: styled } = require("styled-components");
 
 export const EnteringPage = () => {
   return (
