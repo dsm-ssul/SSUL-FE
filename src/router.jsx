@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { GlobalStyle } from "./GlovalStyle.style";
 import { EnteringPage } from "./pages/EnteringPage";
+import { CalculatorPage } from "./pages/CalculatorPage";
 import { LoadingPage } from "./pages/LoadingPage";
 import { MainPage } from "./pages/MainPage";
 import { VotePage } from "./pages/VotePage";
@@ -11,6 +12,7 @@ function MainRouter() {
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<EnteringPage />} />
+        <Route path="/Calculator" element={<CalculatorPage />} />
         <Route path="/main" element={<MainPage/>} />
         <Route path="/voting" element={<VotePage/>} />
         <Route path="/Loading" element={<LoadingPage/>} />
