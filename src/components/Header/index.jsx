@@ -4,6 +4,7 @@ import * as S from "./style.js";
 
 const getNavLinkStyle = ({ isActive }) => ({
   color: isActive ? "#4F63D2" : "black",
+  textDecoration: "none",
 });
 
 function Header() {
