@@ -8,6 +8,7 @@ import { ShareEX2Page } from "./pages/ShareEX2Page";
 import { LoadingPage } from "./pages/LoadingPage";
 import { MainPage } from "./pages/MainPage";
 import { VotePage } from "./pages/VotePage";
+import { NewCalculatorPage } from "./pages/NewCalculatorPage";
 
 function MainRouter() {
   return (
@@ -19,9 +20,10 @@ function MainRouter() {
         <Route path="/Share" element={<SharePage />} />
         <Route path="/ShareEX" element={<ShareEXPage />} />
         <Route path="/ShareEX2" element={<ShareEX2Page />} />
-        <Route path="/main" element={<MainPage/>} />
-        <Route path="/voting" element={<VotePage/>} />
-        <Route path="/Loading" element={<LoadingPage/>} />
+        <Route path="/main" element={<MainPage />} />
+        <Route path="/voting" element={<VotePage />} />
+        <Route path="/Loading" element={<LoadingPage />} />
+        <Route path="/NewCalculator" element={<NewCalculatorPage />} />
       </Routes>
     </BrowserRouter>
   );
