@@ -1,12 +1,12 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
-    width: 100%;
+    width: 1920px;
     height: 65px;
     border-bottom: 1px solid black;
     display: flex;
     align-items: center;
-    padding: 0 0 0 340px;
+    justify-content: center;
 `;
 
 export const Text = styled.div`
@@ -15,4 +15,3 @@ export const Text = styled.div`
     font-size: 20px;
     cursor: pointer;
 `;
-
