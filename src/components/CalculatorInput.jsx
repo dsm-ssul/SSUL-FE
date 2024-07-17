@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
-export const CalculatorInput = ({ title, content, placeholder }) => {
+export const CalculatorInput = ({
+  title,
+  content,
+  placeholder,
+  value,
+  onChange,
+}) => {
   return (
     <Container>
       <TextContainer>
@@ -8,7 +14,7 @@ export const CalculatorInput = ({ title, content, placeholder }) => {
         <Content>{content}</Content>
       </TextContainer>
       <TextContainer>
-        <Input placeholder={placeholder} />
+        <Input placeholder={placeholder} value={value} onChange={onChange} />
         <Text>만원</Text>
       </TextContainer>
     </Container>
