@@ -7,8 +7,8 @@ export const EnteringPage = () => {
       <Title>SSUL's 재무설계</Title>
       <EnterInput Title="이름" />
       <EnterInput Title="나이" />
-      <EnterInput Title="월급" />
-      <EnterInput Title="한달 고정 지출비" />
+      <EnterInput Title="월급(만)" />
+      <EnterInput Title="한달 고정 지출비(만)" />
       <InputContainer>
         <InputTitle>목표</InputTitle>
         <div>
