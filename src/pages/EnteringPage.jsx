@@ -1,40 +1,42 @@
-import axios from 'axios';
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import { EnterInput } from '../components/EnterInput';
-import { LoadingPage } from '../pages/LoadingPage';
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+import { EnterInput } from "../components/EnterInput";
+import { LoadingPage } from "../pages/LoadingPage";
 
 export const EnteringPage = () => {
-  const [name, setName] = useState('');
-  const [age, setAge] = useState('');
-  const [salary, setSalary] = useState('');
-  const [expenses, setExpenses] = useState('');
-  const [goalYears, setGoalYears] = useState('');
-  const [goalAmount, setGoalAmount] = useState('');
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [salary, setSalary] = useState("");
+  const [expenses, setExpenses] = useState("");
+  const [goalYears, setGoalYears] = useState("");
+  const [goalAmount, setGoalAmount] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
     setLoading(true);
     try {
-        const response = await axios.post('https://asdf.loca.lt/good', {
-            name,
-            age: parseInt(age, 10),
-            salary: parseInt(salary, 10),
-            fixed_expenses: parseInt(expenses, 10),
-            year: parseInt(goalYears, 10),
-            target: parseInt(goalAmount, 10),
-        });
-        console.log('Response:', response.data);
-        navigate('/main', { state: response.data });
+      const response = await axios.post("https://asdf.loca.lt/good", {
+        name,
+        age: parseInt(age, 10),
+        salary: parseInt(salary, 10),
+        fixed_expenses: parseInt(expenses, 10),
+        year: parseInt(goalYears, 10),
+        target: parseInt(goalAmount, 10),
+      });
+      console.log("Response:", response.data);
+      navigate("/main", { state: response.data });
     } catch (error) {
-        console.error('Error:', error.response ? error.response.data : error.message);
+      console.error(
+        "Error:",
+        error.response ? error.response.data : error.message
+      );
     } finally {
-        setLoading(false);
+      setLoading(false);
     }
-};
-
+  };
 
   if (loading) {
     return <LoadingPage />;
@@ -43,23 +45,38 @@ export const EnteringPage = () => {
   return (
     <Container>
       <Title>SSUL's 재무설계</Title>
-<<<<<<< Updated upstream
-      <EnterInput Title="이름" />
-      <EnterInput Title="나이" />
-      <EnterInput Title="월급(만)" />
-      <EnterInput Title="한달 고정 지출비(만)" />
-=======
-      <EnterInput Title="이름" value={name} onChange={(e) => setName(e.target.value)} />
-      <EnterInput Title="나이" value={age} onChange={(e) => setAge(e.target.value)} />
-      <EnterInput Title="월급(만)" value={salary} onChange={(e) => setSalary(e.target.value)} />
-      <EnterInput Title="한달 고정 지출비(만)" value={expenses} onChange={(e) => setExpenses(e.target.value)} />
->>>>>>> Stashed changes
+      <EnterInput
+        Title="이름"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <EnterInput
+        Title="나이"
+        value={age}
+        onChange={(e) => setAge(e.target.value)}
+      />
+      <EnterInput
+        Title="월급(만)"
+        value={salary}
+        onChange={(e) => setSalary(e.target.value)}
+      />
+      <EnterInput
+        Title="한달 고정 지출비(만)"
+        value={expenses}
+        onChange={(e) => setExpenses(e.target.value)}
+      />
       <InputContainer>
         <InputTitle>목표</InputTitle>
         <div>
-          <Input value={goalYears} onChange={(e) => setGoalYears(e.target.value)} />
+          <Input
+            value={goalYears}
+            onChange={(e) => setGoalYears(e.target.value)}
+          />
           <Content>년 안에</Content>
-          <Input value={goalAmount} onChange={(e) => setGoalAmount(e.target.value)} />
+          <Input
+            value={goalAmount}
+            onChange={(e) => setGoalAmount(e.target.value)}
+          />
           <Content>만원 모으기</Content>
         </div>
       </InputContainer>
