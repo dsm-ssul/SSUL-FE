@@ -1,68 +1,27 @@
-import axios from 'axios';
 import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js";
-import { useEffect, useState } from 'react';
 import { Doughnut } from "react-chartjs-2";
-import { useLocation } from 'react-router-dom';
 import styled from "styled-components";
 import Header from "../components/Header";
-import { LoadingPage } from "./LoadingPage";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const MainPage = () => {
-    const { state } = useLocation();
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [advices, setAdvices] = useState({ first_advice: '', second_advice: '' });
-
-    useEffect(() => {
-        console.log('Current state:', state);
-
-        if (!state || !state.name) {
-            console.error('State or name is undefined');
-            setLoading(false);
-            return;
-        }
-
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('https://asdf.loca.lt/good', {
-                    params: {
-                        name: state.name,
-                    },
-                });
-                const { ssang, ggo, jju, gge, first_advice, second_advice } = response.data;
-                const colors = ["#5C7EBF", "#709FBF", "#8CC0E4", "#A4D5F6"];
-                setData({
-                    datasets: [
-                        {
-                            data: [ssang, ggo, jju, gge],
-                            backgroundColor: colors,
-                        },
-                    ],
-                });
-                setAdvices({ first_advice, second_advice });
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, [state]);
-
-    if (loading) {
-        return <LoadingPage />;
-    }
+    const data = {
+        datasets: [
+            {
+                data: [40, 35, 15, 10],
+                backgroundColor: ["#5C7EBF", "#709FBF", "#8CC0E4", "#A4D5F6"],
+            },
+        ],
+    };
     const colors = ["#5C7EBF", "#709FBF", "#8CC0E4", "#A4D5F6"];
-    
+
     return (
         <>
             <Header />
             <MainContainer>
                 <Main>
-                    {data ? <Doughnut data={data} /> : <LoadingPage />}
+                    <Doughnut data={data}/>
                 </Main>
                 <ListSquareContainer>
                     {["생활비", "고정비", "저축비", "재테크"].map((label, index) => (
@@ -80,7 +39,7 @@ export const MainPage = () => {
                             <Text>효과적인 금융생활</Text>
                         </TextBox>
                         <Content>
-                            {advices.first_advice}
+                            20대 초반의 경우, 생활비와 고정비 비중이 높은 편입니다. 이는 독립 초기 단계에서 필수적인 지출이 많기 때문입니다. 저축 비율을 25%로 설정한 것은 장기적인 재무 안정성을 위해 중요하며, 자산증식에도 10%를 할당하여 미래를 위한 투자를 시작하는 것이 좋습니다. 이 비율은 안정적인 재무 관리와 미래 준비의 균형을 맞추는 데 도움이 될 것입니다.
                         </Content>
                     </Answer>
                 </AnswerContainer>
@@ -90,7 +49,7 @@ export const MainPage = () => {
                             <Text>효과적인 금융생활</Text>
                         </TextBox2>
                         <Content>
-                            {advices.second_advice}
+                            20대 초반의 월급 230만원 수준을 고려할 때, 저축과 자산증식을 위한 전략은 다음과 같습니다. 먼저, 저축의 경우 단기와 장기 목표를 동시에 고려해야 합니다. 단기 목표를 위해서는 6개월에서 1년 만기의 단기 정기예금을 활용하고, 장기 목표를 위해서는 2-3년 만기의 적금 상품을 선택하는 것이 좋습니다. 이를 통해 유동성과 수익성을 동시에 확보할 수 있습니다. 자산증식의 경우, 초기에는 위험을 최소화하면서 안정적인 수익을 추구해야 합니다. 따라서 국내 우량 기업의 주식에 소액으로 분산 투자하는 방식을 추천합니다. 또한, 월 10만원 정도로 인덱스 펀드에 정기적으로 투자하는 것도 좋은 방법입니다. 이러한 전략은 장기적으로 복리 효과를 누릴 수 있게 해주며, 시간이 지남에 따라 투자 금액을 점진적으로 늘려갈 수 있습니다.
                         </Content>
                     </Answer2>
                 </AnswerContainer2>

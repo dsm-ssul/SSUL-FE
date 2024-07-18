@@ -1,24 +1,23 @@
-import axios from "axios";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import { EnterInput } from "../components/EnterInput";
-import { LoadingPage } from "../pages/LoadingPage";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { EnterInput } from '../components/EnterInput';
+import { LoadingPage } from '../pages/LoadingPage';
 
 export const EnteringPage = () => {
-  const [name, setName] = useState("");
-  const [age, setAge] = useState("");
-  const [salary, setSalary] = useState("");
-  const [expenses, setExpenses] = useState("");
-  const [goalYears, setGoalYears] = useState("");
-  const [goalAmount, setGoalAmount] = useState("");
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
+  const [salary, setSalary] = useState('');
+  const [expenses, setExpenses] = useState('');
+  const [goalYears, setGoalYears] = useState('');
+  const [goalAmount, setGoalAmount] = useState('');
+  const [submitting, setSubmitting] = useState(false); // Track form submission state
 
   const handleSubmit = async () => {
-    setLoading(true);
+    setSubmitting(true); // Start form submission
     try {
-      const response = await axios.post("https://asdf.loca.lt/good", {
+      const response = await axios.post('https://asdf.loca.lt/good', {
         name,
         age: parseInt(age, 10),
         salary: parseInt(salary, 10),
@@ -26,45 +25,36 @@ export const EnteringPage = () => {
         year: parseInt(goalYears, 10),
         target: parseInt(goalAmount, 10),
       });
-      console.log("Response:", response.data);
-      navigate("/main", { state: response.data });
+      console.log('Response:', response.data);
+      navigate('/main', { state: response.data }); // Redirect on success
     } catch (error) {
-      console.error(
-        "Error:",
-        error.response ? error.response.data : error.message
-      );
+      console.error('Error:', error.response ? error.response.data : error.message);
     } finally {
-      setLoading(false);
+      setSubmitting(false); // Stop form submission
     }
   };
 
-  if (loading) {
-    return <LoadingPage />;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate('/main'); // Redirect after 10 seconds if not submitted
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, [navigate]);
+
+  if (submitting) {
+    return <LoadingPage />; // Show loading indicator during form submission
   }
 
   return (
     <Container>
       <Title>SSUL's 재무설계</Title>
-      <EnterInput
-        Title="이름"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <EnterInput
-        Title="나이"
-        value={age}
-        onChange={(e) => setAge(e.target.value)}
-      />
-      <EnterInput
-        Title="월급(만)"
-        value={salary}
-        onChange={(e) => setSalary(e.target.value)}
-      />
-      <EnterInput
-        Title="한달 고정 지출비(만)"
-        value={expenses}
-        onChange={(e) => setExpenses(e.target.value)}
-      />
+      <EnterInput Title="이름" value={name} onChange={(e) => setName(e.target.value)} />
+      <EnterInput Title="나이" value={age} onChange={(e) => setAge(e.target.value)} />
+      <EnterInput Title="월급(만)" value={salary} onChange={(e) => setSalary(e.target.value)} />
+      <EnterInput Title="한달 고정 지출비(만)" value={expenses} onChange={(e) => setExpenses(e.target.value)} />
       <InputContainer>
         <InputTitle>목표</InputTitle>
         <div>
@@ -80,7 +70,9 @@ export const EnteringPage = () => {
           <Content>만원 모으기</Content>
         </div>
       </InputContainer>
-      <Button onClick={handleSubmit}>결과 확인하기</Button>
+      <Button onClick={handleSubmit} disabled={submitting}>
+        결과 확인하기
+      </Button>
     </Container>
   );
 };
